@@ -1,0 +1,12 @@
+Django==5.0.2
+psycopg2-binary==2.9.9
+django-environ==0.11.2
+scikit-learn==1.4.0
+scapy==2.5.0
+psutil==5.9.8
+numpy==1.26.4
+pandas==2.2.0
+python-dateutil==2.8.2
+djangorestframework==3.14.0
+channels==4.0.0
+daphne==4.0.0
