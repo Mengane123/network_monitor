@@ -10,6 +10,7 @@ from django.utils import timezone
 # 4 : Anomaly Detection Model 
 
 
+#Model to store information of the packets 
 class NetworkConnection(models.Model):
     source_ip = models.GenericIPAddressField()
     destination_ip = models.GenericIPAddressField()
@@ -41,6 +42,7 @@ class PortStatus(models.Model):
         ]
 
 
+#Model for storing alerts when anomalies are detected 
 class SecurityAlert(models.Model):
     SEVERITY_CHOICES = [
         ('LOW' , 'Low'),
