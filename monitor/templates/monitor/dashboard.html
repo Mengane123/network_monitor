@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Network Security Dashboard</h1>
+    
+    <!-- Alerts Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Security Alerts</h2>
+        <div class="space-y-4">
+            {% for alert in recent_alerts %}
+            <div class="border-l-4 {% if alert.severity == 'HIGH' %}border-red-500{% else %}border-yellow-500{% endif %} p-4">
+                <h3 class="font-bold">{{ alert.title }}</h3>
+                <p class="text-gray-600">{{ alert.description }}</p>
+                <p class="text-sm text-gray-500">{{ alert.timestamp|timesince }} ago</p>
+            </div>
+            {% empty %}
+            <p>No recent alerts</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Port Status Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Port Status</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for port in port_status %}
+            <div class="border rounded p-4">
+                <h3 class="font-bold">Port {{ port.port_number }}</h3>
+                <p class="{% if port.status == 'open' %}text-green-600{% else %}text-red-600{% endif %}">
+                    Status: {{ port.status|title }}
+                </p>
+                {% if port.service %}
+                <p class="text-gray-600">Service: {{ port.service }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Network Statistics -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-4">Network Statistics</h2>
+        <p class="text-lg">Connections in the last hour: {{ connection_count }}</p>
+    </div>
+</div>
+{% endblock %}
