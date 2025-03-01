@@ -23,8 +23,8 @@ class NetworkConnection(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=['timestamp']),
-            models.Index(field=['source_ip']),
-            models.Index(field=['destination_ip']),
+            models.Index(fields=['source_ip']),
+            models.Index(fields=['destination_ip']),
         ]
 
 
